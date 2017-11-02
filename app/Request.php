@@ -1,8 +1,9 @@
 <?php
+
 namespace App;
+
 class Request
 {
-    
     public $param = array();
     
     /**
@@ -12,7 +13,6 @@ class Request
      */
     public static function getFirstPartOfUrl()
     {
-        
         $url =  trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
         $arrWithUrl = explode('/', $url);
         return $arrWithUrl[0];
@@ -25,7 +25,6 @@ class Request
      */
     public static function groupURLToKeyAndValueAvailableInControllers()
     {
-    
         $path = trim($_SERVER['REQUEST_URI'], '/');
         @list($param) = explode('/', $path, 1);
         if($param) {
@@ -43,7 +42,6 @@ class Request
             }
             return $parameters;
         }
-    
     }
     
     /**
@@ -53,10 +51,7 @@ class Request
      */
     public static function getUrlMethod()
     {
-    
         return $_SERVER['REQUEST_METHOD'];
     
     }
-    
-    
 }

@@ -1,5 +1,7 @@
 <?php
+
 namespace Src\Controllers;
+
 use App\Controller;
 use Src\Helpers\ConnectToFb;
 use Src\Models\User;
@@ -19,17 +21,11 @@ class LoginFbController extends Controller
      */
     public function login()
     {
-
         $config = new ConnectToFb();
-        
         $fb = $config->connect();
-        
         $helper = $fb->getRedirectLoginHelper();
-        
         $this->validator($helper, $fb);
-
         $this->addCurrentUserDataToDb();
-        
         header("Location: http://localhost/");
     }
     
@@ -40,16 +36,13 @@ class LoginFbController extends Controller
      * @param ConnectToFb $fb
      */
     public function validator($helper, $fb)
-    {
-        
+    { 
         try {
             $accessToken = $helper->getAccessToken();
         } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-
             echo 'Graph returned an error: ' . $e->getMessage();
             exit;
         } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-
             echo 'Facebook SDK returned an error: ' . $e->getMessage();
             exit;
         }
@@ -68,10 +61,7 @@ class LoginFbController extends Controller
             exit;
         }
         $this->tokenValidator($fb, $accessToken);
-        
     }
-    
-    
     
     /**
      * Validator token and token to session.
@@ -81,55 +71,41 @@ class LoginFbController extends Controller
      */
     public function tokenValidator($fb, $accessToken)
     {
-    
         $oAuth2Client = $fb->getOAuth2Client();
-        
         $tokenMetadata = $oAuth2Client->debugToken($accessToken);
-        
         $tokenMetadata->validateAppId(getenv('FB_KEY')); 
-
         $tokenMetadata->validateExpiration();
         
         if (! $accessToken->isLongLived()) {
-            
             try {
                 $accessToken = $oAuth2Client->getLongLivedAccessToken($accessToken);
             } catch (\Facebook\Exceptions\FacebookSDKException $e) {
                 echo "<p>Error getting long-lived access token: " . $helper->getMessage() . "</p>\n\n";
                 exit;
             }
-        
             echo '<h3>Long-lived</h3>';
             var_dump($accessToken->getValue());
         }
         
         $_SESSION['fb_access_token'] = (string) $accessToken;
     }
-    
-    
-    
-    
-    
+
     /**
      * Add email and id user to db and add username to session.
      */
     public function addCurrentUserDataToDb()
     {
-        
         $data = 'https://graph.facebook.com/me?access_token='.$_SESSION['fb_access_token'];
         
         $ch = curl_init();
-        
         curl_setopt($ch, CURLOPT_URL, $data);
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        
         $output = curl_exec($ch);
-        $array = json_decode($output, true);
         
+        $array = json_decode($output, true);
         $userId = $array['id'];
         $username = $array['name'];
-        
         $user = new User();
         $user->insert(
             'User',
@@ -138,12 +114,8 @@ class LoginFbController extends Controller
             'nameUser' => $username,
             ]
         );
-        
         $_SESSION['username'] = $username;
         
-        curl_close($ch);
-        
+        curl_close($ch);  
     }
-    
-
 }

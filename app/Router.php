@@ -1,5 +1,7 @@
 <?php
+
 namespace App;
+
 class Router
 {
     public $router;
@@ -12,13 +14,10 @@ class Router
      */
     public static function load($fileWithRoutes)
     {
-        
         $router = new static;
-        
         include $fileWithRoutes;
         
         return $router;
-        
     }
     
 
@@ -32,9 +31,7 @@ class Router
      */
     public function get(string $url, string $controller, string $method)
     {
-    
-        if($url === Request::getFirstPartOfUrl() && 'GET' === Request::getUrlMethod()) {
-                
+        if($url === Request::getFirstPartOfUrl() && 'GET' === Request::getUrlMethod()) {   
             return $this->ifMethodIsChecked($controller, $method);
         }
     }
@@ -50,10 +47,8 @@ class Router
     public function post(string $url, string $controller, string $method)
     {
         if($url === Request::getFirstPartOfUrl() && 'POST' === Request::getUrlMethod()) {
-                
             return $this->ifMethodIsChecked($controller, $method);
         }
-        
     }
 
     
@@ -67,18 +62,13 @@ class Router
      */
     public function ifMethodIsChecked(string $controller, string $method)
     {
-        
         $className = '\\Src\\Controllers\\' . $controller;
         
         if(!method_exists($className, $method)) {
-            
             throw new \Exception('in '.$controller.' not appear '.$method.' method');
-            
         }
         
         $cont =  new $className(Request::groupURLToKeyAndValueAvailableInControllers());
         $cont->$method();
-        
     }
-
 }

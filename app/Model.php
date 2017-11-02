@@ -1,6 +1,9 @@
 <?php
+
 namespace App;
+
 use \PDO;
+
 /**
  * 
  * @author Patryk Piwko
@@ -9,7 +12,6 @@ use \PDO;
 class Model
 {
     protected $pdo;
-
     
     /**
      * Connect to database.
@@ -18,7 +20,6 @@ class Model
      */
     public function connect() : \PDO
     {
-        
         $pdo = new PDO(
             'mysql:host='.getenv('DB_HOST').';dbname='.getenv('DB_NAME').'', ''.getenv('USER_DB').'', ''.getenv('PASS'), 
             [
@@ -27,7 +28,6 @@ class Model
             ]
         );
         return $pdo;
-        
     }
     
     /**
@@ -37,7 +37,6 @@ class Model
      */
     public function getAll(string $table) : array
     {
-        
         $sql = sprintf(
             'select * from %s',
             $table
@@ -57,7 +56,6 @@ class Model
      */
     public function insert(string $table, array $param)
     {
-        
         $sql = sprintf(
             'insert into %s (%s) values (%s)',
             $table,
@@ -67,9 +65,6 @@ class Model
         
         $query = $this->connect()->prepare($sql);
         
-        $query->execute($param);
-        
-    }
-    
-    
+        $query->execute($param);  
+    }  
 }

@@ -1,5 +1,7 @@
 <?php
+
 namespace Src\Controllers;
+
 use Src\Models\User;
 use App\Controller;
 use Src\Helpers\ConnectToFb;
@@ -13,14 +15,10 @@ class IndexController extends Controller
          */
         $config = new ConnectToFb();
         $fb = $config->connect();
-        
         $helper = $fb->getRedirectLoginHelper();
-
         $permissions = ['email']; // Optional permissions
         $loginUrl = $helper->getLoginUrl('http://localhost/facebookLogin', $permissions);
-
         $user = new User();
-        
         $session = isset($_SESSION['username']) ? $_SESSION['username'] : null;
         
         echo $this->render(
@@ -30,7 +28,5 @@ class IndexController extends Controller
             'session' => $session,
             )
         );
-        
     }
-
 }
