@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  	
+	{% set JS = 'project_OZDZ/src/Views/js' %}
+	{% set CSS = 'project_OZDZ/src/Views/css' %}
+	<link href="{{ CSS }}/assets/css/font-awesome.css" rel="stylesheet">
+    <link href="{{ CSS }}/assets/css/docs.css" rel="stylesheet" >
+	<link href="{{ CSS }}/bootstrap-social.css" rel="stylesheet" >
+	<script type="text/javascript"  src="{{ JS }}/get_data.js"></script>
+
+  	<title>
+    	  {% block title %}{% endblock %}
+  	</title>
+  </head>
+  
+  <body>
+  
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 col-md-offset-4">
+    			{% include 'menuTop.html.twig' %}
+			</div>
+		</div>
+	</div>
+	<button id="politic">Polityka</button>
+	<button id="music">Muzyka</button>
+	<button id="sport">Sport</button>
+	<button id="anything">Ogólne</button>
+
+	<div class="politic"></div>
+	<div class="music"></div>
+	<div class="sport"></div>
+	<div class="anything"></div>
+  
+      {% block content %}
+
+      {% endblock %}
+      
+      {% block login %}
+         
+      {% endblock %}
+
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+
+
+  </body>
+
+</html>
