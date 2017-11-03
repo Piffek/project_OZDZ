@@ -17,7 +17,7 @@ class IndexController extends Controller
         $fb = $config->connect();
         $helper = $fb->getRedirectLoginHelper();
         $permissions = ['email']; // Optional permissions
-        $loginUrl = $helper->getLoginUrl('http://localhost/facebookLogin', $permissions);
+        $loginUrl = $helper->getLoginUrl('http://localhost:8000/facebookLogin', $permissions);
         $user = new User();
         $session = isset($_SESSION['username']) ? $_SESSION['username'] : null;
         
