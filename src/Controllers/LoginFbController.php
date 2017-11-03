@@ -5,7 +5,6 @@ namespace Src\Controllers;
 use App\Controller;
 use Src\Helpers\ConnectToFb;
 
-
 /**
  * addCurrentUserDataToDb() - add data user to db.
  */

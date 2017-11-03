@@ -3,11 +3,21 @@
 namespace App;
 
 use Src\Services\FacebookService;
-
+/**
+ * 
+ * Provider service to controller.
+ *
+ */
 class Providers
 {
     protected $class;
-    public function __construct($class)
+    
+    /**
+     * Strategy constructor. Create instance of class if isset.
+     * 
+     * @param string $class name of class.
+     */
+    public function __construct(string $class)
     {
         switch ($class){
             case 'FacebookService':
@@ -16,7 +26,13 @@ class Providers
         }
     }
     
-    public function provider(){
+    /**
+     * Return instance of class.
+     * 
+     * @return $class
+     */
+    public function provider()
+    {
         return $this->class;
     }
 }
