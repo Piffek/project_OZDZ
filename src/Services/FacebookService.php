@@ -4,9 +4,8 @@ namespace Src\Services;
 
 use Facebook\Facebook;
 use Src\Models\User;
-use App\ServiceProvider;
 
-class FacebookService extends ServiceProvider
+class FacebookService
 {
     /**
      * Validate params.

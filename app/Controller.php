@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Service\ServiceProvider;
 use Dotenv\Dotenv;
 
 class Controller extends ServiceProvider

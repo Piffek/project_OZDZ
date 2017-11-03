@@ -4,7 +4,7 @@ namespace App\Service;
 
 use App\Providers;
 
-final class ServiceProvider implements ServiceInterface
+class ServiceProvider implements ServiceInterface
 {
     /**
      * 
@@ -15,7 +15,7 @@ final class ServiceProvider implements ServiceInterface
      * @return class istance.
      * 
      */
-    protected function getProviders(string $nameOfService)
+    public function getProviders(string $nameOfService)
     {
         return (new Providers($nameOfService))->provider();
     }
