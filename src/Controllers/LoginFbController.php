@@ -10,11 +10,7 @@ use Src\Helpers\ConnectToFb;
  */
 class LoginFbController extends Controller
 {
-    protected $provider;
     
-    public function __construct(){
-        $this->provider = $this->getProviders('FacebookService');
-    }
     /**
      * Move by all method in this class.
      * config - load ConnectToFb.
@@ -27,8 +23,8 @@ class LoginFbController extends Controller
         $config = new ConnectToFb();
         $fb = $config->connect();
         $helper = $fb->getRedirectLoginHelper();
-        $this->provider->validator($helper, $fb);
-        $this->provider->addCurrentUserDataToDb();
+        $this->getService('FacebookService')->validator($helper, $fb);
+        $this->getService('FacebookService')->addCurrentUserDataToDb();
         header("Location: http://localhost:8000/");
     }
 }

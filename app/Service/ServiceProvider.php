@@ -15,7 +15,7 @@ class ServiceProvider implements ServiceInterface
      * @return class istance.
      * 
      */
-    public function getProviders(string $nameOfService)
+    public function getService(string $nameOfService)
     {
         return (new Providers($nameOfService))->provider();
     }

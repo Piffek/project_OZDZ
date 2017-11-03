@@ -8,6 +8,7 @@ use Dotenv\Dotenv;
 class Controller extends ServiceProvider
 {
     protected $request;
+    public $provider;
     
     /**
      * Get param from URL and generate env.
@@ -17,8 +18,10 @@ class Controller extends ServiceProvider
     public function __construct($request)
     {
         $this->request = $request;
-        $this->dotenv();
+        $env = __DIR__.'/..';
+        $dotenv = new Dotenv($env);
         
+        $dotenv->load();
     }
     
     /**
@@ -34,19 +37,5 @@ class Controller extends ServiceProvider
         $twig = new \Twig_Environment($loader);
         
         return $twig->render($template, $parameters);
-    }
-    
-    
-    /**
-     * Dotenv load provider.
-     *
-     * @return array
-     */
-    protected function dotenv() : array
-    {
-        $env = __DIR__.'/..';
-        $dotenv = new Dotenv($env);
-        
-        return $dotenv->load();
     }
 }

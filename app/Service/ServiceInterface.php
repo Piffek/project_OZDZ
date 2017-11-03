@@ -9,5 +9,5 @@ namespace App\Service;
  */
 Interface ServiceInterface
 {
-    public function getProviders(string $nameOfService);
+    public function getService(string $nameOfService);
 }
