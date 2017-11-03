@@ -20,10 +20,7 @@ class LoginFbController extends Controller
      */
     public function login()
     {
-        $config = new ConnectToFb();
-        $fb = $config->connect();
-        $helper = $fb->getRedirectLoginHelper();
-        $this->getService('FacebookService')->validator($helper, $fb);
+        $this->getService('FacebookService')->validator();
         $this->getService('FacebookService')->addCurrentUserDataToDb();
         header("Location: http://localhost:8000/");
     }

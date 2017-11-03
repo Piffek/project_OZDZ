@@ -4,7 +4,7 @@ namespace Src\Models;
 
 use App\Model;
 
-class Issue extends Model
+class Category extends Model
 {
     
 }

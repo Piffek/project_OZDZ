@@ -4,19 +4,34 @@ namespace Src\Services;
 
 use Facebook\Facebook;
 use Src\Models\User;
+use Src\Helpers\ConnectToFb;
 
 class FacebookService
 {
+    protected $helper, $config, $connectToFb;
+    public $loginurl;
+    
+    public function __construct(ConnectToFb $connectToFb)
+    {
+        $this->connectToFb = $connectToFb;
+        $this->fb = $this->connectToFb->connect();
+        $this->helpers = $this->fb->getRedirectLoginHelper();
+        $this->loginurl = $this->helper();
+    }
+    
+    public function helper(){
+        return $this->helpers->getLoginUrl('http://localhost:8000/facebookLogin', ['email']);
+    }
     /**
      * Validate params.
      *
      * @param Facebook    $helper
      * @param ConnectToFb $fb
      */
-    public function validator($helper, $fb)
+    public function validator()
     {
         try {
-            $accessToken = $helper->getAccessToken();
+            $accessToken = $this->helpers->getAccessToken();
         } catch(\Facebook\Exceptions\FacebookResponseException $e) {
             echo 'Graph returned an error: ' . $e->getMessage();
             exit;
@@ -26,19 +41,19 @@ class FacebookService
         }
         
         if (! isset($accessToken)) {
-            if ($helper->getError()) {
+            if ($this->helpers->getError()) {
                 header('HTTP/1.0 401 Unauthorized');
-                echo "Error: " . $helper->getError() . "\n";
-                echo "Error Code: " . $helper->getErrorCode() . "\n";
-                echo "Error Reason: " . $helper->getErrorReason() . "\n";
-                echo "Error Description: " . $helper->getErrorDescription() . "\n";
+                echo "Error: " . $this->helpers->getError() . "\n";
+                echo "Error Code: " . $this->helpers->getErrorCode() . "\n";
+                echo "Error Reason: " . $this->helpers->getErrorReason() . "\n";
+                echo "Error Description: " . $this->helpers->getErrorDescription() . "\n";
             } else {
                 header('HTTP/1.0 400 Bad Request');
                 echo 'Bad request';
             }
             exit;
         }
-        $this->tokenValidator($fb, $accessToken);
+        $this->tokenValidator($accessToken);
     }
     
     /**
@@ -47,9 +62,9 @@ class FacebookService
      * @param Facebook $fb
      * @param Facebook $accessToken
      */
-    public function tokenValidator($fb, $accessToken)
+    public function tokenValidator($accessToken)
     {
-        $oAuth2Client = $fb->getOAuth2Client();
+        $oAuth2Client = $this->fb->getOAuth2Client();
         $tokenMetadata = $oAuth2Client->debugToken($accessToken);
         $tokenMetadata->validateAppId(getenv('FB_KEY'));
         $tokenMetadata->validateExpiration();
@@ -73,27 +88,20 @@ class FacebookService
      */
     public function addCurrentUserDataToDb()
     {
-        $data = 'https://graph.facebook.com/me?access_token='.$_SESSION['fb_access_token'];
-        
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $data);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $output = curl_exec($ch);
-        
-        $array = json_decode($output, true);
-        $userId = $array['id'];
-        $username = $array['name'];
+       $this->fb->setDefaultAccessToken($_SESSION['fb_access_token']);
+       $response = $this->fb->get('/me?locale=pl_PL&fields=name,email');
+       $userNode = $response->getGraphUser();
+       
         $user = new User();
         $user->insert(
             'User',
             [
-                'idUser' => $userId,
-                'nameUser' => $username,
+                'idUser' => $userNode['id'],
+                'nameUser' => $userNode['name'],
+                'email' => $userNode['email'],
             ]
             );
-        $_SESSION['username'] = $username;
-        
-        curl_close($ch);
+        $_SESSION['username'] = $userNode['name'];
+       
     }
 }

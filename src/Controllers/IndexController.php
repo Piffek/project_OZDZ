@@ -4,22 +4,17 @@ namespace Src\Controllers;
 
 use Src\Models\User;
 use App\Controller;
-use Src\Helpers\ConnectToFb;
 
 class IndexController extends Controller
 {
+    /**
+     * Show start page with login to fb button.
+     */
     public function index()
     {
-        /**
-         * Show start page with login to fb button.
-         */
-        $config = new ConnectToFb();
-        $fb = $config->connect();
-        $helper = $fb->getRedirectLoginHelper();
-        $permissions = ['email']; // Optional permissions
-        $loginUrl = $helper->getLoginUrl('http://localhost:8000/facebookLogin', $permissions);
         $user = new User();
         $session = isset($_SESSION['username']) ? $_SESSION['username'] : null;
+        $loginUrl = $this->getService('FacebookService')->loginurl;
         
         echo $this->render(
             'index.html.twig', array(

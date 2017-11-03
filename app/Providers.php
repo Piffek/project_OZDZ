@@ -3,6 +3,8 @@
 namespace App;
 
 use Src\Services\FacebookService;
+use Src\Helpers\ConnectToFb;
+
 /**
  * 
  * Provider service to controller.
@@ -21,7 +23,7 @@ class Providers
     {
         switch ($class){
             case 'FacebookService':
-                $this->class = new FacebookService;
+                $this->class = new FacebookService(new ConnectToFb());
                 break;
         }
     }
