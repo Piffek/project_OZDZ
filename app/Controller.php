@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Dotenv\Dotenv;
+
 class Controller extends ServiceProvider
 {
     protected $request;
@@ -15,5 +17,35 @@ class Controller extends ServiceProvider
     {
         $this->request = $request;
         $this->dotenv();
+        
+    }
+    
+    /**
+     * Render twig template.
+     *
+     * @param string $template
+     * @param array  $parameters
+     * @return string
+     */
+    public function render(string $template, array $parameters) : string
+    {
+        $loader = new \Twig_Loader_Filesystem(__DIR__ .'/../src/Views');
+        $twig = new \Twig_Environment($loader);
+        
+        return $twig->render($template, $parameters);
+    }
+    
+    
+    /**
+     * Dotenv load provider.
+     *
+     * @return array
+     */
+    protected function dotenv() : array
+    {
+        $env = __DIR__.'/..';
+        $dotenv = new Dotenv($env);
+        
+        return $dotenv->load();
     }
 }
