@@ -10,6 +10,7 @@
 		"facebook/php-ads-sdk" : "2.8.*",
 		"facebook/graph-sdk" : "^5.5",
 		"vlucas/phpdotenv" : "^2.4",
-		"squizlabs/php_codesniffer" : "2.9"
+		"squizlabs/php_codesniffer" : "2.9",
+		"phpmailer/phpmailer": "^6.0"
 	}
 }
