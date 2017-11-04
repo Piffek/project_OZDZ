@@ -6,11 +6,12 @@ use PHPMailer\PHPMailer\Exception;
 
 class Mailer
 {
-    const SMTPDebug = 2;
-    const SMTPSecure = 'tls';
-    const PORT = 2525;
+    const SMTPDebug = 1;
+    const SMTPSecure = 'ssl';
+    const PORT = 587;
+    const SMTPAuth = true;
     
-    protected $mail, $from, $to, $subject, $body, $smtpDebug, $host, $smtpAuth, $username, $password;
+    protected $mail, $from, $to, $subject, $body, $smtpDebug, $host, $username, $password;
     
     /**
      * 
@@ -28,7 +29,6 @@ class Mailer
     {
         $this->mail = new PHPMailer(true);
         $this->host = getenv('MAIL_HOST');
-        $this->smtpAuth = getenv('SMTPAuth');
         $this->username = getenv('MAIL_USERNAME');
         $this->password = getenv('MAIL_PASSWORD');
         $this->from = $from;
@@ -39,12 +39,12 @@ class Mailer
     
     protected function configuration()
     {
-        $this->mail->SMTPDebug = self::SMTPDebug;
         $this->mail->isSMTP();
         $this->mail->Host = $this->host;
-        $this->mail->SMTPAuth = $this->smtpAuth;
         $this->mail->Username = $this->username;
         $this->mail->Password = $this->password;
+        $this->mail->SMTPDebug = self::SMTPDebug;
+        $this->mail->SMTPAuth = self::SMTPAuth;
         $this->mail->SMTPSecure = self::SMTPSecure;
         $this->mail->Port = self::PORT;
     }
