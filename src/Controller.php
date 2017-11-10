@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace Src;
 
-use App\Service\ServiceProvider;
+use Src\Service\ServiceProvider;
 use Dotenv\Dotenv;
 
 class Controller extends ServiceProvider
@@ -33,7 +33,7 @@ class Controller extends ServiceProvider
      */
     public function render(string $template, array $parameters) : string
     {
-        $loader = new \Twig_Loader_Filesystem(__DIR__ .'/../src/Views');
+        $loader = new \Twig_Loader_Filesystem(__DIR__ .'/../app/Views');
         $twig = new \Twig_Environment($loader);
         
         return $twig->render($template, $parameters);

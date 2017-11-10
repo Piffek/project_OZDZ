@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Service;
+namespace Src\Service;
 
-use App\Providers;
+use Src\Providers;
 
 class ServiceProvider implements ServiceInterface
 {

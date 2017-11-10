@@ -1,10 +1,10 @@
 <?php
 
-namespace Src\Services;
+namespace App\Services;
 
 use Facebook\Facebook;
-use Src\Models\User;
-use Src\Helpers\ConnectToFb;
+use App\Models\User;
+use App\Helpers\ConnectToFb;
 
 class FacebookService
 {
@@ -101,6 +101,7 @@ class FacebookService
                 'email' => $userNode['email'],
             ]
             );
+        $_SESSION['user_email'] = $userNode['email'];
         $_SESSION['username'] = $userNode['name'];
        
     }

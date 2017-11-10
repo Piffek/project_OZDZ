@@ -1,9 +1,9 @@
 <?php
 
-namespace Src\Controllers;
+namespace App\Controllers;
 
-use App\Controller;
-use Src\Helpers\ConnectToFb;
+use Src\Controller;
+use App\Helpers\ConnectToFb;
 
 /**
  * addCurrentUserDataToDb() - add data user to db.

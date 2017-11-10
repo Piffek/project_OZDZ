@@ -1,10 +1,10 @@
 <?php
 
-namespace Src\Controllers;
+namespace App\Controllers;
 
-use Src\Models\User;
-use App\Controller;
-use App\PHPMailer\Mailer;
+use App\Models\User;
+use Src\Controller;
+use Src\PHPMailer\Mailer;
 
 class IndexController extends Controller
 {

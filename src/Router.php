@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Src;
 
 class Router
 {
@@ -62,7 +62,7 @@ class Router
      */
     public function ifMethodIsChecked(string $controller, string $method)
     {
-        $className = '\\Src\\Controllers\\' . $controller;
+        $className = '\\App\\Controllers\\' . $controller;
         
         if(!method_exists($className, $method)) {
             throw new \Exception('in '.$controller.' not appear '.$method.' method');

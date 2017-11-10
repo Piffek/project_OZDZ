@@ -1,8 +1,8 @@
 <?php
 
-namespace Src\Models;
+namespace App\Models;
 
-use App\Model;
+use Src\Model;
 
 class Category extends Model
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace Src;
 
-use Src\Services\FacebookService;
-use Src\Helpers\ConnectToFb;
+use App\Services\FacebookService;
+use App\Helpers\ConnectToFb;
 
 /**
  * 

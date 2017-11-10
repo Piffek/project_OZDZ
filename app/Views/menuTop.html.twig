@@ -5,4 +5,14 @@
     	<a class="btn btn-block btn-social btn-github"> <i class="fa fa-github"></i> Sign in with GitHub</a>
     {% else %}
     	Witaj {{ session }}
+    	Wybierz kategorie, z której informacje chcesz otrzymywać na mail.
+    	<form action="/rodzaj" method="POST">
+    		<select name="kind">
+    			<option value="politic">Polityka</option>
+    			<option value="music">Muzyka</option>
+    			<option value="sport">Sport</option>
+    			<option value="anything">Ogólne</option>
+    		</select>
+    	<button type="submit" value="Wyslij">Dodaj</button>
+    	</form>
 	{% endif %}

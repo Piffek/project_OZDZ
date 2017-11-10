@@ -6,6 +6,6 @@
 	
 
 	
-	use App\Router;
+	use Src\Router;
 	require 'bootstrap.php';
-	Router::load(__DIR__ . '/src/routes.php');
+	Router::load(__DIR__ . '/app/routes.php');

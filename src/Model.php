@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Src;
 
 use \PDO;
 
@@ -66,5 +66,18 @@ class Model
         $query = $this->connect()->prepare($sql);
         
         $query->execute($param);  
-    }  
+    }
+    
+    public function get(string $what, string $table, string $rowName, $name)
+    {
+        $sql = sprintf(
+            'select %s from %s where %s=%s',
+            $what, $table, $rowName, $name
+            );
+        $query = $this->connect()->prepare($sql);
+        
+        $query->execute();
+        
+        return $query->fetch(PDO::FETCH_CLASS);
+    }
 }
