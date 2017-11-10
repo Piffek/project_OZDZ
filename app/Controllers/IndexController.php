@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Models\User;
 use Src\Controller;
-use App\Helpers\SendingMail;
 
 class IndexController extends Controller
 {
