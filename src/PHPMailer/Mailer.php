@@ -7,8 +7,8 @@ use PHPMailer\PHPMailer\Exception;
 class Mailer
 {
     const SMTPDebug = 1;
-    const SMTPSecure = 'ssl';
-    const PORT = 587;
+    const SMTPSecure = 'tls';
+    const PORT = '2525';
     const SMTPAuth = true;
     
     protected $mail, $from, $to, $subject, $body, $smtpDebug, $host, $username, $password;

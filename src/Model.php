@@ -70,14 +70,12 @@ class Model
     
     public function get(string $what, string $table, string $rowName, $name)
     {
-        $sql = sprintf(
-            'select %s from %s where %s=%s',
-            $what, $table, $rowName, $name
-            );
-        $query = $this->connect()->prepare($sql);
+        $query = $this->connect()->prepare("SELECT ". $what ." FROM ". $table ." WHERE ". $rowName." = :value");
+        
+        $query->bindParam(':value', $name);
         
         $query->execute();
         
-        return $query->fetch(PDO::FETCH_CLASS);
+        return $query->fetch();
     }
 }
