@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Src\Controller;
 use App\Models\Category;
-use App\Models\User;
+use App\Helpers\SendMailToAllUser;
 
 class KindController extends Controller
 {
@@ -14,7 +14,12 @@ class KindController extends Controller
     public function index()
     {
         $category = new Category();
-        $category->insert('Category', ['user_email' => $_SESSION['user_email'], 'name' => $_POST['kind']]);
+        return $category->insert('Category', ['user_email' => $_SESSION['user_email'], 'name' => $_POST['kind']]);
     }
-
+    
+    public function sendToAllUsers()
+    {
+        $sendToAll = new SendMailToAllUser();
+        return $sendToAll->send(new Category());
+    }
 }

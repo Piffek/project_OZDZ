@@ -17,9 +17,6 @@ class IndexController extends Controller
         $session = isset($_SESSION['username']) ? $_SESSION['username'] : null;
         $loginUrl = $this->getService('FacebookService')->loginurl;
         
-        $sending = new SendingMail();
-        $sending->Send();
-        
         echo $this->render(
             'index.html.twig', array(
             'user' => $user->getAll('user'),
