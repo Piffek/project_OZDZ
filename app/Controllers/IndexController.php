@@ -12,6 +12,7 @@ class IndexController extends Controller
      */
     public function index()
     {
+        $this->getService('ErrorService')->log('test2', 3);
         $user = new User();
         $session = isset($_SESSION['username']) ? $_SESSION['username'] : null;
         $loginUrl = $this->getService('FacebookService')->loginurl;
