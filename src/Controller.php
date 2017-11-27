@@ -32,7 +32,7 @@ class Controller extends ServiceProvider
      * @param array $parameters
      * @return string
      */
-    public function render(string $template, array $parameters): string
+    public function render(string $template, array $parameters = array()): string
     {
         $loader = new \Twig_Loader_Filesystem(__DIR__.'/../app/Views');
         $twig = new \Twig_Environment($loader);

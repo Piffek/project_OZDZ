@@ -11,6 +11,8 @@ class MailController extends Controller
     public function sendToAllUsers()
     {
         $sendToAll = new SendMailToAllUser();
-        return $sendToAll->send(new Category());
+        $sendToAll->send(new Category());
+
+        echo $this->render('mailing.html.twig');
     }
 }
