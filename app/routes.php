@@ -1,6 +1,6 @@
 <?php 
 
-$router->get('',  'IndexController', 'index22');
+$router->get('',  'IndexController', 'index');
 
 $router->get('facebookLogin',  'LoginFbController', 'login');
 
