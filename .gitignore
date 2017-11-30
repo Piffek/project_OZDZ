@@ -4,4 +4,4 @@ composer.phar
 .settings
 .buildpath
 .env
-/idea
+/.idea
