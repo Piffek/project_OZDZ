@@ -18,7 +18,7 @@ class LoginController extends Controller
      * 
      * redirect to start page.
      */
-    public function login()
+    public function facebook()
     {
         $this->getService('FacebookService')->validator();
         $this->getService('FacebookService')->addCurrentUserDataToDb();

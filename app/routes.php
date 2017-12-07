@@ -2,7 +2,7 @@
 
 $router->get('',  'IndexController', 'index');
 
-$router->get('facebookLogin',  'LoginFbController', 'login');
+$router->get('facebookLogin',  'LoginController', 'facebook');
 
 $router->post('rodzaj', 'KindController', 'index');
 
