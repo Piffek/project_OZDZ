@@ -39,4 +39,9 @@ class Controller extends ServiceProvider
 
         return $twig->render($template, $parameters);
     }
+
+    public function __call($method, $parameters)
+    {
+        throw new \Exception("$method not exists in controller");
+    }
 }

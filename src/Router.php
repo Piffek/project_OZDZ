@@ -60,11 +60,8 @@ class Router
     {
         $className = '\\App\\Controllers\\'.$controller;
 
-        if (! method_exists($className, $method)) {
-            throw new \Exception('in '.$controller.' not appear '.$method.' method');
-        }
+        $class = new $className(Request::groupURLToKeyAndValueAvailableInControllers());
 
-        $cont = new $className(Request::groupURLToKeyAndValueAvailableInControllers());
-        $cont->$method();
+        call_user_func([$class, $method]);
     }
 }

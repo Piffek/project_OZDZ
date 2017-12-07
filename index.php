@@ -8,4 +8,5 @@
 	
 	use Src\Router;
 	require 'bootstrap.php';
+	$cos = 1;
 	Router::load(__DIR__ . '/app/routes.php');
