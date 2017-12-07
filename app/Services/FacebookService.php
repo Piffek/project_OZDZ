@@ -4,18 +4,22 @@ namespace App\Services;
 
 use Facebook\Facebook;
 use App\Models\User;
-use App\Helpers\ConnectToFb;
 
 class FacebookService
 {
-    protected $helper, $config, $connectToFb;
+    protected $helper, $config, $fb;
 
     public $loginurl;
 
-    public function __construct(ConnectToFb $connectToFb)
+    public function __construct()
     {
-        $this->connectToFb = $connectToFb;
-        $this->fb = $this->connectToFb->connect();
+        $this->fb = new \Facebook\Facebook(
+            [
+                'app_id' => getenv('FB_KEY'),
+                'app_secret' => getenv('FB_SECRET'),
+                'default_graph_version' => 'v2.9'
+            ]
+        );
         $this->helpers = $this->fb->getRedirectLoginHelper();
         $this->loginurl = $this->helper();
     }

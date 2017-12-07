@@ -15,11 +15,13 @@ class IndexController extends Controller
         $user = new User();
         $session = isset($_SESSION['username']) ? $_SESSION['username'] : null;
         $loginUrl = $this->getService('FacebookService')->loginurl;
+        $googleLogin = $this->getService('GooglePlusService')->authUrl;
         
         echo $this->render(
             'index.html.twig', array(
             'user' => $user->getAll('user'),
             'loginToFb' => $loginUrl,
+            'loginToG_plus' => $googleLogin,
             'session' => $session,
             )
         );

@@ -5,6 +5,7 @@ namespace Src;
 use App\Services\ErrorService;
 use App\Services\FacebookService;
 use App\Helpers\ConnectToFb;
+use App\Services\GoolgePlusService;
 
 /**
  *
@@ -24,10 +25,13 @@ class Providers
     {
         switch ($class) {
             case 'FacebookService':
-                $this->class = new FacebookService(new ConnectToFb());
+                $this->class = new FacebookService();
                 break;
             case 'ErrorService':
                 $this->class = new ErrorService(include 'config.php');
+                break;
+            case 'GooglePlusService':
+                $this->class = new GoolgePlusService(include 'config.php');
                 break;
         }
     }

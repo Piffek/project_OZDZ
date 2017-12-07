@@ -5,6 +5,7 @@ namespace Src;
 class Request
 {
     public $param = array();
+    public static $paramOfGet = array();
     
     /**
      * Get first param from URL.
@@ -14,7 +15,7 @@ class Request
     public static function getFirstPartOfUrl()
     {
         $url =  trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-        $arrWithUrl = explode('/', $url);
+        $arrWithUrl = explode('/', str_replace(['?'], ['/'], $url));
         return $arrWithUrl[0];
     }
     
@@ -26,16 +27,37 @@ class Request
     public static function groupURLToKeyAndValueAvailableInControllers()
     {
         $path = trim($_SERVER['REQUEST_URI'], '/');
-        @list($param) = explode('/', $path, 1);
+
+        @list($param) = explode('/',  str_replace(['?'], ['/'], $path), 1);
+
         if($param) {
-    
-            $param = explode('/', $path);
-                
+            $equal = strpos($param, '=');
+            if($equal){
+                $paramReplace = str_replace(['?'], ['/'], $param);
+
+                $paramEqual =  explode('=', $paramReplace);
+
+                $methodAndParam = explode('/', $paramEqual[0]);
+
+
+                array_push($methodAndParam, $paramEqual[1]);
+
+
+                array_push(self::$paramOfGet, $methodAndParam);
+            }
+
+            if(!empty(self::$paramOfGet)){
+                $param = self::$paramOfGet[0];
+            }else{
+                $param = explode('/', $path);
+            }
+
             $key = array_search(self::getFirstPartOfUrl(), $param);
+
             unset($param[$key]);
-                
+
             $parameters = array();
-            
+
             foreach(array_chunk($param, 2) as $met){
                 $parameters[$met[0]] = $met[1];
                 
