@@ -8,7 +8,7 @@ use App\Helpers\ConnectToFb;
 /**
  * addCurrentUserDataToDb() - add data user to db.
  */
-class LoginFbController extends Controller
+class LoginController extends Controller
 {
     
     /**
