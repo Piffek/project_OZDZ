@@ -4,7 +4,7 @@ namespace Src;
 
 class Router
 {
-    public $router;
+    private $router;
 
     /**
      * @param $fileWithRoutes
@@ -29,7 +29,7 @@ class Router
     public function get(string $url, string $controller, string $method)
     {
         if ($url === Request::getFirstPartOfUrl() && 'GET' === Request::getUrlMethod()) {
-            return $this->ifMethodIsChecked($controller, $method);
+            return $this->instanceOfController($controller, $method);
         }
     }
 
@@ -44,7 +44,7 @@ class Router
     public function post(string $url, string $controller, string $method)
     {
         if ($url === Request::getFirstPartOfUrl() && 'POST' === Request::getUrlMethod()) {
-            return $this->ifMethodIsChecked($controller, $method);
+            return $this->instanceOfController($controller, $method);
         }
     }
 
@@ -56,7 +56,7 @@ class Router
      * @param string $method
      * @throws \Exception
      */
-    public function ifMethodIsChecked(string $controller, string $method)
+    public function instanceOfController(string $controller, string $method)
     {
         $className = '\\App\\Controllers\\'.$controller;
 
