@@ -13,13 +13,11 @@ class FacebookService
 
     public function __construct()
     {
-        $this->fb = new \Facebook\Facebook(
-            [
+        $this->fb = new \Facebook\Facebook([
                 'app_id' => getenv('FB_KEY'),
                 'app_secret' => getenv('FB_SECRET'),
-                'default_graph_version' => 'v2.9'
-            ]
-        );
+                'default_graph_version' => 'v2.9',
+            ]);
         $this->helpers = $this->fb->getRedirectLoginHelper();
         $this->loginurl = $this->helper();
     }
@@ -100,11 +98,16 @@ class FacebookService
         $userNode = $response->getGraphUser();
 
         $user = new User();
-        $user->insert('User', [
+
+        $ifIsset = $user->get('email', 'User', 'email', $userNode['email']);
+
+        if (! isset($ifIsset['email'])) {
+            $user->insert('User', [
                 'idUser' => $userNode['id'],
                 'nameUser' => $userNode['name'],
                 'email' => $userNode['email'],
             ]);
+        }
         $_SESSION['user_email'] = $userNode['email'];
         $_SESSION['username'] = $userNode['name'];
     }

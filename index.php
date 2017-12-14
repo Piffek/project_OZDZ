@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);
@@ -8,5 +8,6 @@
 	
 	use Src\Router;
 	require 'bootstrap.php';
-	$cos = 1;
+
+    session_start();
 	Router::load(__DIR__ . '/app/routes.php');
