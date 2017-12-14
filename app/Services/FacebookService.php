@@ -99,9 +99,7 @@ class FacebookService
 
         $user = new User();
 
-        $ifIsset = $user->get('email', 'User', 'email', $userNode['email']);
-
-        if (! isset($ifIsset['email'])) {
+        if (! $user->ifIsset($userNode['email'])) {
             $user->insert('User', [
                 'idUser' => $userNode['id'],
                 'nameUser' => $userNode['name'],

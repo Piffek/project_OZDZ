@@ -64,9 +64,7 @@ class GoolgePlusService
 
         $user = new User();
 
-        $ifIsset = $user->get('email', 'User', 'email', $g_plus_user_info->email);
-
-        if(!isset($ifIsset['email'])){
+        if (! $user->ifIsset($g_plus_user_info->email)) {
             $user->insert('User', [
                 'idUser' => $g_plus_user_info->id,
                 'nameUser' => $userName,
@@ -74,6 +72,5 @@ class GoolgePlusService
                 'picture' => $g_plus_user_info->picture,
             ]);
         }
-
     }
 }
