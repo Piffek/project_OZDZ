@@ -14,7 +14,7 @@ document.addEventListener(
                 function(){
                     ifNotIs(what);
                     $.getJSON(
-                        'http://irollup.co.uk/project/'+file+'/?pass=415d7fe0d9f4fff5977c50d786ca5b9871a7e778', { get_param: 'value' }, function(data) {
+                        'http://irollup.co.uk/project/'+file+'', { get_param: 'value' }, function(data) {
                             $.each(
                                 data, function(index, element) {
                                     $('.'+what).append(

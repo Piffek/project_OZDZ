@@ -19,6 +19,7 @@
     <link href="{{ CSS }}/bootstrap-social.css" rel="stylesheet">
     <script type="text/javascript" src="{{ JS }}/get_data.js"></script>
     <script type="text/javascript" src="{{ JS }}/notifications.js"></script>
+    <script type="text/javascript" src="{{ JS }}/changeVisibility.js"></script>
 
     <title>
         {% block title %}{% endblock %}
@@ -34,6 +35,67 @@
         </div>
     </div>
 </div>
+Sort by:
+<select id="what">
+    <option id="day" value="day">Day</option>
+    <option id="month" value="month">Month</option>
+    <option id="year" value="year">Year</option>
+</select>
+<br>
+<form style="display: none;" id="monthForm" method="GET" action="/dane">
+    <select name="kind">
+        <option value="weather">Weather</option>
+        <option value="sport">Sport</option>
+        <option value="anything">Anything</option>
+        <option value="music">Music</option>
+    </select>
+
+    <input hidden name="what" value="month"></input>
+
+    <select name="number">
+        {% for i in 0..12 %}
+            <option value="0{{ i }}">{{ i }}</option>
+        {% endfor %}
+    </select>
+    <button value="sort">Sortuj</button>
+</form>
+
+<form style="display: none;" id="dayForm" method="GET" action="/dane">
+    <select name="kind">
+        <option value="weather">Weather</option>
+        <option value="sport">Sport</option>
+        <option value="anything">Anything</option>
+        <option value="music">Music</option>
+    </select>
+
+    <input hidden name="what" value="day"></input>
+
+
+    <select name="number">
+        {% for i in 0..31 %}
+            <option value="0{{ i }}">{{ i }}</option>
+        {% endfor %}
+    </select>
+    <button value="sort">Sortuj</button>
+</form>
+
+<form style="display: none;" id="yearForm" method="GET" action="/dane">
+    <select name="kind">
+        <option value="weather">Weather</option>
+        <option value="sport">Sport</option>
+        <option value="anything">Anything</option>
+        <option value="music">Music</option>
+    </select>
+
+    <input hidden name="what" value="year"></input>
+
+    <select name="number">
+        <option value="2017">2017</option>
+    </select>
+    <button value="sort">Sortuj</button>
+</form>
+
+
 <button id="politic">Polityka</button>
 <button id="music">Muzyka</button>
 <button id="sport">Sport</button>
