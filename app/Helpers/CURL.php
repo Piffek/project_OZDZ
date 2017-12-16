@@ -12,7 +12,7 @@ class CURL
 {
     private $result;
 
-    const SSL_VER = fasle;
+    const SSL_VER = false;
 
     const TRANSFER = true;
 
@@ -20,7 +20,8 @@ class CURL
     {
         $ch = curl_init();
 
-        curl_setopt($ch, SSL_VER, self::SSL_VER);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::SSL_VER);
+
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, self::TRANSFER);
 
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -28,10 +29,11 @@ class CURL
         $this->result = curl_exec($ch);
 
         curl_close($ch);
+
     }
 
     public function getResult()
     {
-        var_dump(json_decode($this->result, true));
+        return $this->result;
     }
 }

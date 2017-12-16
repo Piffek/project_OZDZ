@@ -39,7 +39,7 @@ class KindController extends Controller
                 $curl->create($url);
                 break;
         }
-        return $curl->getResult();
+        var_dump(json_encode($curl->getResult()));
     }
 
 }
