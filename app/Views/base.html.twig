@@ -28,13 +28,7 @@
 
 <body>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-3 col-md-offset-4">
-            {% include 'menuTop.html.twig' %}
-        </div>
-    </div>
-</div>
+
 Sort by:
 <select id="what">
     <option id="day" value="day">Day</option>
@@ -54,7 +48,11 @@ Sort by:
 
     <select name="number">
         {% for i in 0..12 %}
-            <option value="0{{ i }}">{{ i }}</option>
+            {% if i|length == 1 %}
+                <option value="0{{ i }}">{{ i }}</option>
+            {% else %}
+                <option value="{{ i }}">{{ i }}</option>
+            {% endif %}
         {% endfor %}
     </select>
     <button value="sort">Sortuj</button>
@@ -73,7 +71,11 @@ Sort by:
 
     <select name="number">
         {% for i in 0..31 %}
-            <option value="0{{ i }}">{{ i }}</option>
+            {% if i|length == 1 %}
+                <option value="0{{ i }}">{{ i }}</option>
+            {% else %}
+                <option value="{{ i }}">{{ i }}</option>
+            {% endif %}
         {% endfor %}
     </select>
     <button value="sort">Sortuj</button>
@@ -95,16 +97,6 @@ Sort by:
     <button value="sort">Sortuj</button>
 </form>
 
-
-<button id="politic">Polityka</button>
-<button id="music">Muzyka</button>
-<button id="sport">Sport</button>
-<button id="anything">Ogólne</button>
-
-<div class="politic"></div>
-<div class="music"></div>
-<div class="sport"></div>
-<div class="anything"></div>
 
 {% block content %}
 

@@ -29,6 +29,12 @@ class KindController extends Controller
             ]);
         $api->get($_GET, 'kind');
 
-        var_dump(json_encode($api->getResult()));
+        $apiResult = json_encode($api->getResult());
+
+        echo $this->render(
+            'kind.html.twig', array(
+                'apiResult' => $apiResult,
+            )
+        );
     }
 }

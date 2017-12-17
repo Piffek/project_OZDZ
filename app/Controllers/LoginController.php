@@ -24,6 +24,9 @@ class LoginController extends Controller
         header("Location: http://localhost:8000");
     }
 
+    /**
+     * login by google plus
+     */
     public function googlePlus()
     {
         $this->getService('GooglePlusService')->afterRedirect($this->request);
