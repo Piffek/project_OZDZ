@@ -16,14 +16,11 @@ class IndexController extends Controller
         $loginUrl = $this->getService('FacebookService')->loginurl;
         $googleLogin = $this->getService('GooglePlusService')->authUrl;
 
-        echo $this->render(
-            'index.html.twig', array(
-            'loginToFb' => $loginUrl,
-            'loginToG_plus' => $googleLogin,
-            'session' => $session,
-            )
-        );
+        echo $this->render('index.html.twig', [
+                'loginToFb' => $loginUrl,
+                'loginToG_plus' => $googleLogin,
+                'session' => $session,
+                'get' => $_GET,
+            ]);
     }
-    
-    
 }

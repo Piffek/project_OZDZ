@@ -15,7 +15,19 @@ class KindController extends Controller
     {
         $category = new Category();
 
+        $ifIsset = $category->getAll('Category');
+
+        foreach ($ifIsset as $user){
+
+            if($user->user_email === $_SESSION['user_email'] && $user->name === $_POST['kind']){
+                header('Location: http://localhost:8000/?message=dodano już tę kategorie');
+                exit;
+            }
+        }
+
+        header('Location: http://localhost:8000/?message=dodano pomyślnie');
         return $category->insert('Category', ['user_email' => $_SESSION['user_email'], 'name' => $_POST['kind']]);
+
     }
 
     public function getByData()
@@ -30,7 +42,7 @@ class KindController extends Controller
         $api->get($_GET, 'kind');
 
         $apiResult = json_decode($api->getResult());
-//var_dump($apiResult);
+
         echo $this->render(
             'kind.html.twig', array(
                 'apiResult' => $apiResult,
