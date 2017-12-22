@@ -16,7 +16,6 @@ class IndexController extends Controller
         $loginUrl = $this->getService('FacebookService')->loginurl;
         $googleLogin = $this->getService('GooglePlusService')->authUrl;
 
-
         echo $this->render(
             'index.html.twig', array(
             'loginToFb' => $loginUrl,
