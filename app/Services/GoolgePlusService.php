@@ -61,8 +61,10 @@ class GoolgePlusService
         $userName = $g_plus_user_info->name ? $g_plus_user_info->name : $g_plus_user_info->email;
 
         $_SESSION['username'] = $userName;
+        $_SESSION['user_email'] = $g_plus_user_info->email;
 
         $user = new User();
+
 
         if (! $user->ifIsset($g_plus_user_info->email)) {
             $user->insert('User', [
