@@ -21,7 +21,7 @@ class KindController extends Controller
 
             if($user->user_email === $_SESSION['user_email'] && $user->name === $_POST['kind']){
                 header('Location: http://localhost:8000/?message=dodano już tę kategorie');
-                exit;
+                return false;
             }
         }
 

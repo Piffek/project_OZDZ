@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9001e938-d614-479d-8d66-281de553c7f3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Controllers/IndexController.php" afterPath="$PROJECT_DIR$/app/Controllers/IndexController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Controllers/KindController.php" afterPath="$PROJECT_DIR$/app/Controllers/KindController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Views/index.html.twig" afterPath="$PROJECT_DIR$/app/Views/index.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,8 +16,8 @@
       <file leaf-file-name="KindController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Controllers/KindController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="23" column="21" lean-forward="true" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+            <state relative-caret-position="306">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -242,12 +240,12 @@
       <workItem from="1512754031651" duration="233000" />
       <workItem from="1512759565934" duration="968000" />
       <workItem from="1513270122877" duration="8387000" />
-      <workItem from="1513965196032" duration="6374000" />
+      <workItem from="1513965196032" duration="6756000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38681000" />
+    <option name="totallyTimeSpent" value="39063000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -663,8 +661,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Controllers/KindController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="23" column="21" lean-forward="true" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+        <state relative-caret-position="306">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
       </provider>
