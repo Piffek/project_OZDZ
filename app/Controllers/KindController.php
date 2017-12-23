@@ -32,13 +32,14 @@ class KindController extends Controller
 
     public function getByData()
     {
-        $api = new API('http://irollup.co.uk/project/',
-            [
-                'anything' => 'getApi.php?',
-                'sport' => 'getApiSport.php?',
-                'weather' => 'getApiWeather.php?',
-                'music' => 'getApiMusic.php?',
-            ]);
+        $api = new API();
+        $api->setBasicUrl('http://irollup.co.uk/project/');
+        $api->setFileInBasicUrl([
+            'politic' => 'getApi.php?',
+            'sport' => 'getApiSport.php?',
+            'anything' => 'getApiWeather.php?',
+            'music' => 'getApiMusic.php?',
+        ]);
         $api->get($_GET, 'kind');
 
         $apiResult = json_decode($api->getResult());

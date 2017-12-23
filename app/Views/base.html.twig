@@ -34,11 +34,12 @@ Sort by:
     <option id="day" value="day">Day</option>
     <option id="month" value="month">Month</option>
     <option id="year" value="year">Year</option>
+    <option id="all" value="all">All</option>
 </select>
 <br>
 <form style="display: none;" id="monthForm" method="GET" action="/dane">
     <select name="kind">
-        <option value="weather">Weather</option>
+        <option value="politic">Politic</option>
         <option value="sport">Sport</option>
         <option value="anything">Anything</option>
         <option value="music">Music</option>
@@ -60,7 +61,7 @@ Sort by:
 
 <form style="display: none;" id="dayForm" method="GET" action="/dane">
     <select name="kind">
-        <option value="weather">Weather</option>
+        <option value="politic">Politic</option>
         <option value="sport">Sport</option>
         <option value="anything">Anything</option>
         <option value="music">Music</option>
@@ -83,7 +84,7 @@ Sort by:
 
 <form style="display: none;" id="yearForm" method="GET" action="/dane">
     <select name="kind">
-        <option value="weather">Weather</option>
+        <option value="politico">Politic</option>
         <option value="sport">Sport</option>
         <option value="anything">Anything</option>
         <option value="music">Music</option>
@@ -92,6 +93,42 @@ Sort by:
     <input hidden name="what" value="year"></input>
 
     <select name="number">
+        <option value="2017">2017</option>
+    </select>
+    <button value="sort">Sortuj</button>
+</form>
+
+<form style="display: none;" id="allForm" method="GET" action="/dane">
+    <select name="kind">
+        <option value="politic">Politic</option>
+        <option value="sport">Sport</option>
+        <option value="anything">Anything</option>
+        <option value="music">Music</option>
+    </select>
+
+    <input hidden name="what" value="all">
+    miesiąc:
+    <select name="month">
+        {% for i in 1..12 %}
+            {% if i|length == 1 %}
+                <option value="0{{ i }}">{{ i }}</option>
+            {% else %}
+                <option value="{{ i }}">{{ i }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    dzień:
+    <select name="day">
+        {% for i in 1..31 %}
+            {% if i|length == 1 %}
+                <option value="0{{ i }}">{{ i }}</option>
+            {% else %}
+                <option value="{{ i }}">{{ i }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    rok:
+    <select name="year">
         <option value="2017">2017</option>
     </select>
     <button value="sort">Sortuj</button>
