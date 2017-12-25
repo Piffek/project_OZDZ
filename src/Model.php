@@ -68,4 +68,14 @@ class Model
 
         return $query->fetch();
     }
+
+    public function updateOne(string $table, string $data, string $toData, int $id)
+    {
+        $query = $this->connect()->prepare("UPDATE ".$table." SET ".$data." = :value WHERE id = :id");
+
+        $query->bindParam(':value', $toData, PDO::PARAM_STR);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+
+        $query->execute();
+    }
 }

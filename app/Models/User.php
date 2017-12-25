@@ -14,6 +14,10 @@ class User extends Model
 
     private $idUser;
 
+    private $isAdmin;
+
+    private $blocked;
+
     public function ifIsset($email)
     {
         $ifIsset = $this->get('email', 'User', 'email', $email);

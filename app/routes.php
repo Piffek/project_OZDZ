@@ -11,3 +11,7 @@ $router->post('rodzaj', 'KindController', 'index');
 $router->get('wyslij_maile', 'MailController', 'sendToAllUsers');
 
 $router->get('dane', 'KindController', 'getByData');
+
+$router->get('userBan', 'UserController', 'blocked');
+
+$router->get('userUnBan', 'UserController', 'unlocked');
