@@ -18,16 +18,18 @@ document.addEventListener(
                             $.each(
                                 data, function (index, element) {
                                     $('.' + what).append(
-                                        '<img style="height:200px; width:200px" src="' + element.img + '"</img>',
-                                        '<div class="title">' + element.title + '</div>',
-                                        '<a  class="link" href=>' + element.link + '</div>',
-                                        '<div class="description">' + element.description + '</div>',
-                                        '<div class="date">' + element.date + '</div>'
+                                        '<div style="border: 1px solid #ccc; box-shadow: 3px 3px 3px #ccc; padding: 20px; width: 75%;">' +
+                                        '<img style="height:200px;" src="' + element.img + '"/>' +
+                                        '<div class="title">' + element.title + '</div>' +
+                                        '<div><a  class="link" href=>' + element.link + '</a></div>' +
+                                        '<div class="description">' + element.description + '</div>' +
+                                        '<div class="date">' + element.date + '</div>' +
+                                        '</div></br>'
                                     )
                                     ;
 
                                 }
-                            );
+                            )
                         }
                     );
 
