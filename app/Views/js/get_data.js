@@ -17,14 +17,23 @@ document.addEventListener(
                         'http://irollup.co.uk/project/' + file + '', {get_param: 'value'}, function (data) {
                             $.each(
                                 data, function (index, element) {
+
+                                    let date = element.date.substr(0, 10);
+                                    let time = element.date.substr(11, 5);
+
                                     $('.' + what).append(
-                                        '<div style="border: 1px solid #ccc; box-shadow: 3px 3px 3px #ccc; padding: 20px; width: 75%;">' +
-                                        '<img style="height:200px;" src="' + element.img + '"/>' +
-                                        '<div class="title">' + element.title + '</div>' +
-                                        '<div><a  class="link" href=>' + element.link + '</a></div>' +
-                                        '<div class="description">' + element.description + '</div>' +
-                                        '<div class="date">' + element.date + '</div>' +
-                                        '</div></br>'
+                                        '</br>' +
+                                        '<a target="_blank" href="' + element.link + '">' +
+                                        '<div class="tile">' +
+                                        '<table>' +
+                                        '<col class="imgCol">' +
+                                        '<col class="contentCol">' +
+                                        '<tr><td rowspan="5"><div class="img"><img src="' + element.img + '"/></div></td></tr>' +
+                                        '<tr><td><div class="title">' + element.title + '</div></td></tr>' +
+                                        '<tr><td><div class="description">' + element.description + '</div></td></tr>' +
+                                        '<tr><td><div class="link">' + element.link + '</div></td></tr>' +
+                                        '<tr><td><div class="date">' + date + ' ' + time + '</div></td></tr>' +
+                                        '</table></div></a>'
                                     )
                                     ;
 

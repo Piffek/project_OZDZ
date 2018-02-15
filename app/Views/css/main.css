@@ -1,0 +1,46 @@
+body {
+  padding: 20px;
+}
+body div a:link {
+  text-decoration: none;
+}
+body div a {
+  color: black;
+}
+body div a .tile {
+  text-align: left;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  box-shadow: 3px 3px 3px #ccc;
+  padding: 20px;
+  width: 80%;
+  padding-bottom: 30px;
+}
+body div a .tile table {
+  width: 100%;
+}
+body div a .tile table .imgCol {
+  width: 400px;
+}
+body div a .tile table .img {
+  text-align: center;
+}
+body div a .tile table .img img {
+  height: 200px;
+  max-width: 400px;
+}
+body div a .tile table .title {
+  padding-left: 15px;
+  font-weight: bold;
+}
+body div a .tile table .link {
+  padding-left: 15px;
+  font-size: smaller;
+}
+body div a .tile table .description {
+  padding-left: 15px;
+}
+body div a .tile table .date {
+  font-size: smaller;
+  text-align: right;
+}
