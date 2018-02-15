@@ -21,6 +21,7 @@
     <script type="text/javascript" src="{{ JS }}/get_data.js"></script>
     <script type="text/javascript" src="{{ JS }}/notifications.js"></script>
     <script type="text/javascript" src="{{ JS }}/changeVisibility.js"></script>
+    <script type="text/javascript" src="{{ JS }}/search.js"></script>
 
     <title>
         {% block title %}{% endblock %}
@@ -28,7 +29,8 @@
 </head>
 
 <body>
-
+Search:
+<input onkeyup="showSearchInfo(this.value)" name="search" placeholder="Search your events">
 
 Sort by:
 <select id="what">

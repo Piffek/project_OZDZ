@@ -15,3 +15,6 @@ $router->get('dane', 'KindController', 'getByData');
 $router->get('userBan', 'UserController', 'blocked');
 
 $router->get('userUnBan', 'UserController', 'unlocked');
+
+//search
+$router->get('product', 'ProductController', 'search');
