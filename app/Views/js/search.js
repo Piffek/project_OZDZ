@@ -4,12 +4,12 @@ function showSearchInfo(str) {
         return;
     } else {
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
+        xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("searchArt").innerHTML = this.responseText;
+                document.getElementById("searchArt").innerHTML = "<h4>Znalezione artykuły: </h4>" + this.responseText;
             }
         };
-        xmlhttp.open("GET", "/product/search/"+str, true);
+        xmlhttp.open("GET", "/product/search/" + str, true);
         xmlhttp.send();
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,113 +29,221 @@
 </head>
 
 <body>
-Search:
-<input onkeyup="showSearchInfo(this.value)" name="search" placeholder="Search your events">
 
-Sort by:
-<select id="what">
-    <option id="day" value="day">Day</option>
-    <option id="month" value="month">Month</option>
-    <option id="year" value="year">Year</option>
-    <option id="all" value="all">All</option>
-</select>
-<br>
-<form style="display: none;" id="monthForm" method="GET" action="/dane">
-    <select name="kind">
-        <option value="politic">Politic</option>
-        <option value="sport">Sport</option>
-        <option value="anything">Anything</option>
-        <option value="music">Music</option>
-    </select>
+<div>
+    <div class="container-fluid" style="text-align: left">
+        <fieldset>
+            <legend>Wyszukiwarka</legend>
+            <div class="row">
+                <div style="text-align: right" class="col-md-1">Wyszukaj:</div>
+                <div class="col-md-1">
+                    <input onkeyup="showSearchInfo(this.value)" name="search" placeholder="Wpisz szukaną frazę">
+                </div>
+            </div>
+        </fieldset>
 
-    <input hidden name="what" value="month"></input>
+        <div class="row">
+            <br>
+            <br>
+        </div>
 
-    <select name="number">
-        {% for i in 0..12 %}
-            {% if i|length == 1 %}
-                <option value="0{{ i }}">{{ i }}</option>
-            {% else %}
-                <option value="{{ i }}">{{ i }}</option>
-            {% endif %}
-        {% endfor %}
-    </select>
-    <button value="sort">Sortuj</button>
-</form>
+        <fieldset>
+            <legend>Filtrowanie</legend>
+            <div class="row">
+                <div style="text-align: right" class="col-md-1">Filtruj wg:</div>
+                <div class="col-md-1">
+                    <select style="width: 80px" id="what">
+                        <option id="day" value="day">Dnia</option>
+                        <option id="month" value="month">Miesiąca</option>
+                        <option id="year" value="year">Roku</option>
+                        <option id="all" value="all">Daty</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <br>
+            </div>
+            <div>
+                <form style="display: none;" id="monthForm" method="GET" action="/dane">
+                    <div class="row">
+                        <div style="text-align: right" class="col-md-1">Kategoria:</div>
+                        <div class="col-md-1">
+                            <select style="width: 80px" name="kind">
+                                <option value="politic">Polityka</option>
+                                <option value="sport">Sport</option>
+                                <option value="anything">Ogólne</option>
+                                <option value="music">Muzyka</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div style="text-align: right" class="col-md-1">Miesiąc:</div>
+                        <div class="col-md-1">
+                            <input hidden name="what" value="month"></input>
 
-<form style="display: none;" id="dayForm" method="GET" action="/dane">
-    <select name="kind">
-        <option value="politic">Politic</option>
-        <option value="sport">Sport</option>
-        <option value="anything">Anything</option>
-        <option value="music">Music</option>
-    </select>
+                            <select style="width: 80px" name="number">
+                                {% for i in 0..12 %}
+                                    {% if i|length == 1 %}
+                                        <option value="0{{ i }}">{{ i }}</option>
+                                    {% else %}
+                                        <option value="{{ i }}">{{ i }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row"><br></div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-1">
+                            <button style="width: 80px" value="sort">Filtruj</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
-    <input hidden name="what" value="day"></input>
+            <div>
+                <form style="display: none;" id="dayForm" method="GET" action="/dane">
+                    <div class="row">
+                        <div style="text-align: right" class="col-md-1">Kategoria:</div>
+                        <div class="col-md-1">
+                            <select style="width: 80px" name="kind">
+                                <option value="politic">Polityka</option>
+                                <option value="sport">Sport</option>
+                                <option value="anything">Ogólne</option>
+                                <option value="music">Muzyka</option>
+                            </select>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div style="text-align: right" class="col-md-1">Dzień:</div>
+                        <div class="col-md-1">
+                            <input hidden name="what" value="day"></input>
 
-    <select name="number">
-        {% for i in 0..31 %}
-            {% if i|length == 1 %}
-                <option value="0{{ i }}">{{ i }}</option>
-            {% else %}
-                <option value="{{ i }}">{{ i }}</option>
-            {% endif %}
-        {% endfor %}
-    </select>
-    <button value="sort">Sortuj</button>
-</form>
+                            <select style="width: 80px" name="number">
+                                {% for i in 0..31 %}
+                                    {% if i|length == 1 %}
+                                        <option value="0{{ i }}">{{ i }}</option>
+                                    {% else %}
+                                        <option value="{{ i }}">{{ i }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row"><br></div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-1">
+                            <button style="width: 80px" value="sort">Filtruj</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
-<form style="display: none;" id="yearForm" method="GET" action="/dane">
-    <select name="kind">
-        <option value="politico">Politic</option>
-        <option value="sport">Sport</option>
-        <option value="anything">Anything</option>
-        <option value="music">Music</option>
-    </select>
+            <div>
+                <form style="display: none;" id="yearForm" method="GET" action="/dane">
+                    <div class="row">
+                        <div style="text-align: right" class="col-md-1">Kategoria:</div>
+                        <div class="col-md-1">
+                            <select style="width: 80px" name="kind">
+                                <option value="politic">Polityka</option>
+                                <option value="sport">Sport</option>
+                                <option value="anything">Ogólne</option>
+                                <option value="music">Muzyka</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div style="text-align: right" class="col-md-1">Rok:</div>
+                        <div class="col-md-1">
+                            <input hidden name="what" value="year"></input>
 
-    <input hidden name="what" value="year"></input>
+                            <select style="width: 80px" name="number">
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row"><br></div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-1">
+                            <button style="width: 80px" value="sort">Filtruj</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
-    <select name="number">
-        <option value="2017">2017</option>
-    </select>
-    <button value="sort">Sortuj</button>
-</form>
+            <div>
+                <form style="display: none;" id="allForm" method="GET" action="/dane">
+                    <div class="row">
+                        <div style="text-align: right" class="col-md-1">Kategoria:</div>
+                        <div class="col-md-1">
+                            <select style="width: 80px" name="kind">
+                                <option value="politic">Polityka</option>
+                                <option value="sport">Sport</option>
+                                <option value="anything">Ogólne</option>
+                                <option value="music">Muzyka</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div style="text-align: right" class="col-md-1">Dzień:</div>
+                        <div class="col-md-1">
+                            <select style="width: 80px" name="day">
+                                {% for i in 1..31 %}
+                                    {% if i|length == 1 %}
+                                        <option value="0{{ i }}">{{ i }}</option>
+                                    {% else %}
+                                        <option value="{{ i }}">{{ i }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input hidden name="what" value="all">
+                        <div style="text-align: right" class="col-md-1">Miesiąc:</div>
+                        <div class="col-md-1">
+                            <select style="width: 80px" name="month">
+                                {% for i in 1..12 %}
+                                    {% if i|length == 1 %}
+                                        <option value="0{{ i }}">{{ i }}</option>
+                                    {% else %}
+                                        <option value="{{ i }}">{{ i }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
 
-<form style="display: none;" id="allForm" method="GET" action="/dane">
-    <select name="kind">
-        <option value="politic">Politic</option>
-        <option value="sport">Sport</option>
-        <option value="anything">Anything</option>
-        <option value="music">Music</option>
-    </select>
-
-    <input hidden name="what" value="all">
-    miesiąc:
-    <select name="month">
-        {% for i in 1..12 %}
-            {% if i|length == 1 %}
-                <option value="0{{ i }}">{{ i }}</option>
-            {% else %}
-                <option value="{{ i }}">{{ i }}</option>
-            {% endif %}
-        {% endfor %}
-    </select>
-    dzień:
-    <select name="day">
-        {% for i in 1..31 %}
-            {% if i|length == 1 %}
-                <option value="0{{ i }}">{{ i }}</option>
-            {% else %}
-                <option value="{{ i }}">{{ i }}</option>
-            {% endif %}
-        {% endfor %}
-    </select>
-    rok:
-    <select name="year">
-        <option value="2017">2017</option>
-    </select>
-    <button value="sort">Sortuj</button>
-</form>
+                    <div class="row">
+                        <div style="text-align: right" class="col-md-1">Rok:</div>
+                        <div class="col-md-1">
+                            <select style="width: 80px" name="year">
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row"><br></div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-1">
+                            <button style="width: 80px" value="sort">Filtruj</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+        <div class="row">
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
 
 
 {% block content %}

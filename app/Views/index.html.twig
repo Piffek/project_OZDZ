@@ -2,57 +2,74 @@
 
 {% block content %}
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-md-offset-4">
-                {% if session is null %}
-
-                    <a class="btn btn-block btn-social btn-facebook" href="{{ loginToFb }}"><i
-                                class="fa fa-facebook"></i>Log
-                        in
-                        with Facebook!</a>
-                    <a class="btn btn-block btn-social btn-google" href="{{ loginToG_plus }}"> <i
-                                class="fa fa-google"></i>
-                        Sign
-                        in with Google</a>
-                    <a class="btn btn-block btn-social btn-github"> <i class="fa fa-github"></i> Sign in with GitHub</a>
-                {% else %}
-                    {% if userData.blocked == 0 %}
-                        {% include 'checkKindToEmailLogginUser.html.twig' %}
-                    {% else %}
-                        <b>Zostałeś zablokowany, skontaktuj się z adminem celem wyjaśnienia sprawy</b>
-                    {% endif %}
-                    {% if userData.isAdmin == 1 %}
-                        {% for user in allUser %}
-                            <ul>
-                                <li>{{ user.email }}</li>
-                                {% if user.blocked == 1 %}
-                                    Zablokowany
-                                    <a href="userUnBan/id/{{ user.id }}">Odblokuj</a>
-                                {% else %}
-                                    <a href="userBan/id/{{ user.id }}">Zablokuj</a>
-                                {% endif %}
-                            </ul>
-                        {% endfor %}
-                    {% endif %}
-                    {% if get['message'] %}
-                        {{ get['message'] }}<br>
-                    {% endif %}
-                {% endif %}
-            </div>
-        </div>
+    <div>
+    <div class="container-fluid" style="text-align: left">
+        <fieldset>
+            <legend>Artykuły</legend>
+            <button id="politic">Polityka</button>
+            <button id="music">Muzyka</button>
+            <button id="sport">Sport</button>
+            <button id="anything">Ogólne</button>
+        </fieldset>
+    </div>
+    <div class="row">
+        <br>
+        <br>
     </div>
 
-    <button id="politic">Polityka</button>
-    <button id="music">Muzyka</button>
-    <button id="sport">Sport</button>
-    <button id="anything">Ogólne</button>
+    <div class="container-fluid" style="text-align: left">
+        <fieldset>
+            <legend>Subskrypcja</legend>
 
-    <h4>Szukane: </h4>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-4">
+                        {% if session is null %}
+
+                            <a class="btn btn-block btn-social btn-facebook" href="{{ loginToFb }}"><i
+                                        class="fa fa-facebook"></i>Log
+                                in
+                                with Facebook!</a>
+                            <a class="btn btn-block btn-social btn-google" href="{{ loginToG_plus }}"> <i
+                                        class="fa fa-google"></i>
+                                Sign
+                                in with Google</a>
+                            <a class="btn btn-block btn-social btn-github"> <i class="fa fa-github"></i> Sign in with
+                                GitHub</a>
+                        {% else %}
+                            {% if userData.blocked == 0 %}
+                                {% include 'checkKindToEmailLogginUser.html.twig' %}
+                            {% else %}
+                                <b>Zostałeś zablokowany, skontaktuj się z adminem celem wyjaśnienia sprawy</b>
+                            {% endif %}
+                            {% if userData.isAdmin == 1 %}
+                                {% for user in allUser %}
+                                    <ul>
+                                        <li>{{ user.email }}</li>
+                                        {% if user.blocked == 1 %}
+                                            Zablokowany
+                                            <a href="userUnBan/id/{{ user.id }}">Odblokuj</a>
+                                        {% else %}
+                                            <a href="userBan/id/{{ user.id }}">Zablokuj</a>
+                                        {% endif %}
+                                    </ul>
+                                {% endfor %}
+                            {% endif %}
+                            {% if get['message'] %}
+                                {{ get['message'] }}<br>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+
     <div id="searchArt">
 
     </div>
-    <h1>-----------------------------------------------------------------</h1>
+    <hr>
     <div class="politic"></div>
     <div class="music"></div>
     <div class="sport"></div>
