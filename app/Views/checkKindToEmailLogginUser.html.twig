@@ -1,13 +1,19 @@
-
-    	Witaj {{ session }}
-    	Wybierz kategorie, z której informacje chcesz otrzymywać na mail.
-    	<form action="/rodzaj" method="POST">
-    		<select name="kind">
-    			<option value="politic">Polityka</option>
-    			<option value="music">Muzyka</option>
-    			<option value="sport">Sport</option>
-    			<option value="anything">Ogólne</option>
-    		</select>
-    	<button type="submit" value="Wyslij">Dodaj</button>
-    	</form>
-
+<div class="sub">
+    <div>
+        Witaj {{ session }}
+    </div>
+    <div>
+        W tym miejscu możesz zapisać się na newsletter z interesujących Cię kategorii:
+    </div>
+    <div>
+        <form action="/rodzaj" method="POST">
+            <select name="kind">
+                <option value="politic">Polityka</option>
+                <option value="music">Muzyka</option>
+                <option value="sport">Sport</option>
+                <option value="anything">Ogólne</option>
+            </select>
+            <button type="submit" value="Wyslij">Dodaj</button>
+        </form>
+    </div>
+</div>

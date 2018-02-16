@@ -1,6 +1,26 @@
 body {
   padding: 20px;
 }
+body .sub {
+  font-weight: bold;
+  text-align: center;
+}
+body .sub form {
+  font-weight: normal;
+}
+body .locked {
+  color: red;
+}
+body .lock {
+  font-weight: bold;
+}
+body .unlock {
+  font-weight: bold;
+}
+body .signIn {
+  width: 250px;
+  text-align: center;
+}
 body div a:link {
   text-decoration: none;
 }

@@ -21,39 +21,57 @@
         <fieldset>
             <legend>Subskrypcja</legend>
 
-            <div class="container">
+            <div>
                 <div class="row">
-                    <div class="col-md-3 col-md-offset-4">
+                    <div>
                         {% if session is null %}
-
-                            <a class="btn btn-block btn-social btn-facebook" href="{{ loginToFb }}"><i
-                                        class="fa fa-facebook"></i>Log
-                                in
-                                with Facebook!</a>
-                            <a class="btn btn-block btn-social btn-google" href="{{ loginToG_plus }}"> <i
-                                        class="fa fa-google"></i>
-                                Sign
-                                in with Google</a>
-                            <a class="btn btn-block btn-social btn-github"> <i class="fa fa-github"></i> Sign in with
-                                GitHub</a>
+                            <div class="row">
+                                <div class="signIn col-md-2 col-md-offset-5">
+                                    <a class="btn btn-block btn-social btn-facebook" href="{{ loginToFb }}"><i
+                                                class="fa fa-facebook"></i>Log
+                                        in
+                                        with Facebook!</a>
+                                    <a class="btn btn-block btn-social btn-google" href="{{ loginToG_plus }}"> <i
+                                                class="fa fa-google"></i>
+                                        Sign
+                                        in with Google</a>
+                                    <a class="btn btn-block btn-social btn-github"> <i class="fa fa-github"></i> Sign in
+                                        with
+                                        GitHub</a>
+                                </div>
+                            </div>
                         {% else %}
                             {% if userData.blocked == 0 %}
                                 {% include 'checkKindToEmailLogginUser.html.twig' %}
                             {% else %}
-                                <b>Zostałeś zablokowany, skontaktuj się z adminem celem wyjaśnienia sprawy</b>
+                                <div style="text-align: center">
+                                    <b style="text-align: center" class="locked">Nie masz aktywnej subskrypcji. <br>Zostałeś zablokowany, skontaktuj się z
+                                        adminem w celu wyjaśnienia sytuacji.</b>
+                                </div>
                             {% endif %}
                             {% if userData.isAdmin == 1 %}
-                                {% for user in allUser %}
-                                    <ul>
-                                        <li>{{ user.email }}</li>
-                                        {% if user.blocked == 1 %}
-                                            Zablokowany
-                                            <a href="userUnBan/id/{{ user.id }}">Odblokuj</a>
-                                        {% else %}
-                                            <a href="userBan/id/{{ user.id }}">Zablokuj</a>
-                                        {% endif %}
-                                    </ul>
-                                {% endfor %}
+                                <div class="container-fluid">
+                                    <fieldset>
+                                        <legend>Administracja</legend>
+                                        <div class="row col-md-1">
+                                            <div class="col-md-1">
+                                                {% for user in allUser %}
+                                                    <ul>
+                                                        <li>{{ user.email }}
+                                                            {% if user.blocked == 1 %}
+                                                                <b class="locked">Zablokowany</b>
+                                                                <a class="lock" href="userUnBan/id/{{ user.id }}">Odblokuj</a>
+                                                            {% else %}
+                                                                <a class="unlock" href="userBan/id/{{ user.id }}">Zablokuj</a>
+                                                            {% endif %}
+                                                        </li>
+                                                    </ul>
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
                             {% endif %}
                             {% if get['message'] %}
                                 {{ get['message'] }}<br>
