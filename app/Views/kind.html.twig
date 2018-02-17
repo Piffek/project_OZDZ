@@ -2,12 +2,41 @@
 
 {% block content %}
     {% for kind in apiResult %}
-        <ul>
-            <li><img style="height:200px; width:200px"  src="{{ kind.img }}">
-            <h3><a href="{{ kind.link }}" alt="{{ kind.title }}">{{ kind.title }}</a></h3></li>
-            {{ kind.description }}
-            <hr>
-        </ul>
+        <br>
+        <a target="_blank" href="{{ kind.link }}">
+            <div class="tile">
+                <table>
+                    <col class="imgCol">
+                    <col class="contentCol">
+                    <tr>
+                        <td rowspan="5">
+                            <div class="img"><img src="{{ kind.img }}"/></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="title">{{ kind.title }}</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="description">{{ kind.description }}</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="link">{{ kind.link }}</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="date">{{ kind.date }}</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </a>
+        <hr>
     {% endfor %}
 
 {% endblock %}
